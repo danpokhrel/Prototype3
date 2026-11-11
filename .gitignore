@@ -1,0 +1,13 @@
+# Godot generated/cache files
+.godot/
+
+# Godot export artifacts
+build/
+export_credentials.cfg
+
+# Godot editor crashes and logs
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
