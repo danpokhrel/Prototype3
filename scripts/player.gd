@@ -1,14 +1,15 @@
-
 class_name Player
 extends CharacterBody2D
 
 ## Horizontal movement
-@export var acceleration: float = 1200.0
-@export var friction: float = 300.0
-@export var max_speed: float = 370.0
+@export var ground_acceleration: float = 1200.0
+@export var air_acceleration: float = 600.0
+@export var ground_friction: float = 1000.0
+@export var air_friction: float = 60.0
+@export var max_speed: float = 350.0
 
 ## Flapping movement
-@export var flap_force: float = 3000.0
+@export var flap_impulse: float = 280.0       # upward velocity added per tap
 @export var gravity: float = 900.0
 @export var max_fall_speed: float = 500.0
 @export var max_rise_speed: float = -450.0
@@ -33,6 +34,7 @@ var dash_direction: float = 1.0
 
 func _physics_process(delta: float) -> void:
 	var direction: float = Input.get_axis(input_left, input_right)
+	var grounded: bool = is_on_floor()
 
 	# Dash cooldown
 	dash_cooldown_timer = maxf(dash_cooldown_timer - delta, 0.0)
@@ -41,56 +43,41 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(input_dash) \
 	and dash_cooldown_timer == 0.0 \
 	and not is_dashing:
-
 		is_dashing = true
 		dash_timer = dash_duration
 		dash_cooldown_timer = dash_cooldown
 
-		# Dash in the player direction
 		if direction != 0.0:
 			dash_direction = direction
 		else:
 			dash_direction = signf(velocity.x)
 
-		# Dash right if stationary
 		if dash_direction == 0.0:
 			dash_direction = 1.0
 
 	# Horizontal movement
 	if is_dashing:
 		velocity.x = dash_direction * dash_speed
-	else:
-		if direction != 0.0:
-			velocity.x = move_toward(
-				velocity.x,
-				direction * max_speed,
-				acceleration * delta
-			)
-		else:
-			velocity.x = move_toward(
-				velocity.x,
-				0.0,
-				friction * delta
-			)
-
-	# Dash duration
-	if is_dashing:
 		dash_timer -= delta
-
 		if dash_timer <= 0.0:
 			is_dashing = false
+	else:
+		var accel: float = ground_acceleration if grounded else air_acceleration
+		var fric: float = ground_friction if grounded else air_friction
 
-	# Vertical movement
+		if direction != 0.0:
+			velocity.x = move_toward(velocity.x, direction * max_speed, accel * delta)
+		else:
+			velocity.x = move_toward(velocity.x, 0.0, fric * delta)
+
+	# Gravity
 	velocity.y += gravity * delta
 
-	if Input.is_action_pressed(input_flap):
-		velocity.y -= flap_force * delta
+	# Flap: one impulse per press, so mashing climbs faster and not tapping falls
+	if Input.is_action_just_pressed(input_flap):
+		velocity.y = maxf(velocity.y - flap_impulse, max_rise_speed)
 
 	# Clamp vertical velocity
-	velocity.y = clampf(
-		velocity.y,
-		max_rise_speed,
-		max_fall_speed
-	)
+	velocity.y = clampf(velocity.y, max_rise_speed, max_fall_speed)
 
 	move_and_slide()
