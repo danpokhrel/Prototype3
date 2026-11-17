@@ -5,6 +5,9 @@
 [ext_resource type="Script" uid="uid://cssfrhj70r03i" path="res://scripts/level.gd" id="3_jyhfs"]
 [ext_resource type="PackedScene" path="res://scenes/platform.tscn" id="3_platform"]
 [ext_resource type="Script" uid="uid://de3i0nw1lp21m" path="res://scenes/spear.gd" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://tdfribu4vccb" path="res://scenes/static_body_2d.gd" id="4_tefeu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ha3k7"]
 
 [node name="Main" type="Node2D" unique_id=1767054116]
 
@@ -24,6 +27,12 @@ position_smoothing_enabled = true
 
 [node name="Spear" type="Node2D" parent="Platformer Level/Player" unique_id=1261131218]
 script = ExtResource("3_tbgi4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Platformer Level" unique_id=574082265]
+script = ExtResource("4_tefeu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platformer Level/StaticBody2D" unique_id=911804451]
+shape = SubResource("RectangleShape2D_ha3k7")
 
 [node name="Level" type="Node2D" parent="." unique_id=1215886978]
 
