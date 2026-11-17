@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" path="res://scenes/floor.tscn" id="2_floor"]
 [ext_resource type="Script" uid="uid://cssfrhj70r03i" path="res://scripts/level.gd" id="3_jyhfs"]
 [ext_resource type="PackedScene" path="res://scenes/platform.tscn" id="3_platform"]
+[ext_resource type="Script" uid="uid://de3i0nw1lp21m" path="res://scenes/spear.gd" id="3_tbgi4"]
 
 [node name="Main" type="Node2D" unique_id=1767054116]
 
@@ -20,6 +21,9 @@ limit_top = -3500
 limit_right = 1280
 limit_bottom = 100
 position_smoothing_enabled = true
+
+[node name="Spear" type="Node2D" parent="Platformer Level/Player" unique_id=1261131218]
+script = ExtResource("3_tbgi4")
 
 [node name="Level" type="Node2D" parent="." unique_id=1215886978]
 
