@@ -2,9 +2,24 @@
 
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://scenes/floor.tscn" id="2_floor"]
+[ext_resource type="Script" uid="uid://cssfrhj70r03i" path="res://scripts/level.gd" id="3_jyhfs"]
 [ext_resource type="PackedScene" path="res://scenes/platform.tscn" id="3_platform"]
 
 [node name="Main" type="Node2D" unique_id=1767054116]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=357136924]
+script = ExtResource("3_jyhfs")
+
+[node name="Player" parent="Node2D" unique_id=190172534 instance=ExtResource("1_player")]
+position = Vector2(722, -116)
+
+[node name="Camera2D" type="Camera2D" parent="Node2D/Player" unique_id=1752143335]
+position = Vector2(0, 1)
+limit_left = 0
+limit_top = -3500
+limit_right = 1280
+limit_bottom = 100
+position_smoothing_enabled = true
 
 [node name="Level" type="Node2D" parent="." unique_id=1215886978]
 
@@ -19,6 +34,3 @@ position = Vector2(320, 210)
 
 [node name="PlatformHigh" parent="Level" unique_id=735504164 instance=ExtResource("3_platform")]
 position = Vector2(480, 150)
-
-[node name="Player" parent="." unique_id=190172534 instance=ExtResource("1_player")]
-position = Vector2(320, 316)

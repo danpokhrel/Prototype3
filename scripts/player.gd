@@ -73,7 +73,6 @@ func _physics_process(delta: float) -> void:
 	# Gravity
 	velocity.y += gravity * delta
 
-	# Flap: one impulse per press, so mashing climbs faster and not tapping falls
 	if Input.is_action_just_pressed(input_flap):
 		velocity.y = maxf(velocity.y - flap_impulse, max_rise_speed)
 
