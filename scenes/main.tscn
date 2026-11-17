@@ -1,24 +1,24 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene format=3 uid="uid://dkrqi0mv3njla"]
 
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://scenes/floor.tscn" id="2_floor"]
 [ext_resource type="PackedScene" path="res://scenes/platform.tscn" id="3_platform"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=1767054116]
 
-[node name="Level" type="Node2D" parent="."]
+[node name="Level" type="Node2D" parent="." unique_id=1215886978]
 
-[node name="Floor" parent="Level" instance=ExtResource("2_floor")]
-position = Vector2(320.0, 344.0)
+[node name="Floor" parent="Level" unique_id=303985686 instance=ExtResource("2_floor")]
+position = Vector2(320, 344)
 
-[node name="PlatformLow" parent="Level" instance=ExtResource("3_platform")]
-position = Vector2(150.0, 270.0)
+[node name="PlatformLow" parent="Level" unique_id=602402099 instance=ExtResource("3_platform")]
+position = Vector2(150, 270)
 
-[node name="PlatformMid" parent="Level" instance=ExtResource("3_platform")]
-position = Vector2(320.0, 210.0)
+[node name="PlatformMid" parent="Level" unique_id=1819446611 instance=ExtResource("3_platform")]
+position = Vector2(320, 210)
 
-[node name="PlatformHigh" parent="Level" instance=ExtResource("3_platform")]
-position = Vector2(480.0, 150.0)
+[node name="PlatformHigh" parent="Level" unique_id=735504164 instance=ExtResource("3_platform")]
+position = Vector2(480, 150)
 
-[node name="Player" parent="." instance=ExtResource("1_player")]
-position = Vector2(320.0, 316.0)
+[node name="Player" parent="." unique_id=190172534 instance=ExtResource("1_player")]
+position = Vector2(320, 316)

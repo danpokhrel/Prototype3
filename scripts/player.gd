@@ -1,69 +1,96 @@
+
 class_name Player
 extends CharacterBody2D
-## Sidescroller player with tunable game-feel movement.
-##
-## Implements acceleration, variable jump height, coyote time, and jump
-## buffering. All parameters are exported so prototypes can tune them in the
-## Inspector without touching code.
 
-## Horizontal acceleration in pixels per second squared.
-@export var acceleration: float = 2200.0
-## Horizontal deceleration when no input is held, in pixels per second squared.
-@export var friction: float = 2600.0
-## Maximum horizontal speed in pixels per second.
-@export var max_speed: float = 240.0
-## Initial upward velocity when jumping, in pixels per second.
-@export var jump_velocity: float = -420.0
-## Gravity while the jump button is held, in pixels per second squared.
-@export var gravity: float = 980.0
-## Gravity multiplier when the jump button is released mid-jump.
-@export var gravity_multiplier: float = 2.0
-## Downward velocity cap, in pixels per second.
-@export var max_fall_speed: float = 700.0
-## Time after leaving a ledge that jumping is still allowed, in seconds.
-@export var coyote_time: float = 0.12
-## Time before landing that a jump press is still remembered, in seconds.
-@export var jump_buffer_time: float = 0.12
+## Horizontal movement
+@export var acceleration: float = 1200.0
+@export var friction: float = 300.0
+@export var max_speed: float = 370.0
 
-## Input action name for moving left, as configured in the Input Map.
+## Flapping movement
+@export var flap_force: float = 3000.0
+@export var gravity: float = 900.0
+@export var max_fall_speed: float = 500.0
+@export var max_rise_speed: float = -450.0
+
+## Dash settings
+@export var dash_speed: float = 650.0
+@export var dash_duration: float = 0.2
+@export var dash_cooldown: float = 2.0
+
+## Input actions
 @export var input_left: StringName = &"move_left"
-## Input action name for moving right, as configured in the Input Map.
 @export var input_right: StringName = &"move_right"
-## Input action name for jumping, as configured in the Input Map.
-@export var input_jump: StringName = &"jump"
+@export var input_flap: StringName = &"jump"
+@export var input_dash: StringName = &"dash"
 
-## Seconds remaining on the coyote timer. Zero when the timer is expired.
-var _coyote_timer: float = 0.0
-## Seconds remaining on the jump buffer timer. Zero when the timer is expired.
-var _jump_buffer_timer: float = 0.0
+## Dash state
+var is_dashing: bool = false
+var dash_timer: float = 0.0
+var dash_cooldown_timer: float = 0.0
+var dash_direction: float = 1.0
 
 
 func _physics_process(delta: float) -> void:
 	var direction: float = Input.get_axis(input_left, input_right)
 
-	# Horizontal movement: accelerate toward the target speed, or apply friction.
-	if direction != 0.0:
-		velocity.x = move_toward(velocity.x, direction * max_speed, acceleration * delta)
+	# Dash cooldown
+	dash_cooldown_timer = maxf(dash_cooldown_timer - delta, 0.0)
+
+	# Start dash
+	if Input.is_action_just_pressed(input_dash) \
+	and dash_cooldown_timer == 0.0 \
+	and not is_dashing:
+
+		is_dashing = true
+		dash_timer = dash_duration
+		dash_cooldown_timer = dash_cooldown
+
+		# Dash in the player direction
+		if direction != 0.0:
+			dash_direction = direction
+		else:
+			dash_direction = signf(velocity.x)
+
+		# Dash right if stationary
+		if dash_direction == 0.0:
+			dash_direction = 1.0
+
+	# Horizontal movement
+	if is_dashing:
+		velocity.x = dash_direction * dash_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
+		if direction != 0.0:
+			velocity.x = move_toward(
+				velocity.x,
+				direction * max_speed,
+				acceleration * delta
+			)
+		else:
+			velocity.x = move_toward(
+				velocity.x,
+				0.0,
+				friction * delta
+			)
 
-	# Variable jump height: heavier gravity while the jump button is not held.
-	var gravity_now: float = gravity if Input.is_action_pressed(input_jump) else gravity * gravity_multiplier
-	velocity.y = minf(velocity.y + gravity_now * delta, max_fall_speed)
+	# Dash duration
+	if is_dashing:
+		dash_timer -= delta
 
-	# Coyote time: jump is still allowed shortly after walking off a ledge.
-	_coyote_timer = maxf(_coyote_timer - delta, 0.0)
-	if is_on_floor():
-		_coyote_timer = coyote_time
+		if dash_timer <= 0.0:
+			is_dashing = false
 
-	# Jump buffer: a jump press shortly before landing is remembered.
-	_jump_buffer_timer = maxf(_jump_buffer_timer - delta, 0.0)
-	if Input.is_action_just_pressed(input_jump):
-		_jump_buffer_timer = jump_buffer_time
+	# Vertical movement
+	velocity.y += gravity * delta
 
-	if _jump_buffer_timer > 0.0 and (_coyote_timer > 0.0 or is_on_floor()):
-		_jump_buffer_timer = 0.0
-		_coyote_timer = 0.0
-		velocity.y = jump_velocity
+	if Input.is_action_pressed(input_flap):
+		velocity.y -= flap_force * delta
+
+	# Clamp vertical velocity
+	velocity.y = clampf(
+		velocity.y,
+		max_rise_speed,
+		max_fall_speed
+	)
 
 	move_and_slide()
