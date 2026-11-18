@@ -13,7 +13,8 @@ extends Node2D
 @export var minimum_impact_speed: float = 90.0
 @export var stab_damage_per_speed: float = 0.055
 @export var swing_damage_per_speed: float = 0.045
-@export var collision_mask: int = 2
+## Physics layers the spear can hit: 1 = world props, 2 = hittables.
+@export var collision_mask: int = 3
 
 var _player: CharacterBody2D
 var _hit_area: Area2D
