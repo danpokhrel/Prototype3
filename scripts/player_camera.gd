@@ -7,13 +7,13 @@ extends Camera2D
 
 ## Zoom range: at rest the zoom is zoom_at_rest; at zoom_speed_ref it is
 ## zoom_at_top_speed.
-@export var zoom_at_rest: float = 1.0
+@export var zoom_at_rest: float = 4.0
 @export var zoom_at_top_speed: float = 0.85
-@export var zoom_speed_ref: float = 550.0
+@export var zoom_speed_ref: float = 800.0
 @export var zoom_smoothing: float = 4.0
 
 ## Lookahead: the camera drifts this many pixels in the movement direction.
-@export var lookahead_distance: float = 90.0
+@export var lookahead_distance: float = 45.0
 @export var lookahead_smoothing: float = 3.0
 
 ## Shake on hard landings and dashes.
