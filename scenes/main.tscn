@@ -1,49 +1,41 @@
-[gd_scene format=3 uid="uid://dkrqi0mv3njla"]
+[gd_scene format=3 uid="uid://bw6b1cfyrd1kc"]
 
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
-[ext_resource type="PackedScene" path="res://scenes/floor.tscn" id="2_floor"]
-[ext_resource type="Script" uid="uid://cssfrhj70r03i" path="res://scripts/level.gd" id="3_jyhfs"]
-[ext_resource type="PackedScene" path="res://scenes/platform.tscn" id="3_platform"]
-[ext_resource type="Script" uid="uid://de3i0nw1lp21m" path="res://scenes/spear.gd" id="3_tbgi4"]
-[ext_resource type="Script" uid="uid://tdfribu4vccb" path="res://scenes/static_body_2d.gd" id="4_tefeu"]
+[ext_resource type="Script" uid="uid://cssfrhj70r03i" path="res://scripts/level.gd" id="2_level"]
+[ext_resource type="Script" uid="uid://de3i0nw1lp21m" path="res://scenes/spear.gd" id="3_spear"]
+[ext_resource type="Script" uid="uid://tdfribu4vccb" path="res://scenes/static_body_2d.gd" id="4_static"]
+[ext_resource type="Script" uid="uid://ce6kbgaia7nlr" path="res://scripts/player_camera.gd" id="5_camera"]
+[ext_resource type="PackedScene" path="res://scenes/level_layout.tscn" id="6_layout"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ha3k7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dummy"]
 
-[node name="Main" type="Node2D" unique_id=1767054116]
+[node name="Main" type="Node2D" unique_id=355897515]
 
-[node name="Platformer Level" type="Node2D" parent="." unique_id=357136924]
-script = ExtResource("3_jyhfs")
+[node name="Platformer Level" type="Node2D" parent="." unique_id=303868873]
+script = ExtResource("2_level")
 
-[node name="Player" parent="Platformer Level" unique_id=190172534 instance=ExtResource("1_player")]
-position = Vector2(722, -116)
+[node name="Player" parent="Platformer Level" unique_id=925740872 instance=ExtResource("1_player")]
+position = Vector2(640, -48)
+dash_speed = 1000.0
+dash_duration = 0.5
+dash_down_speed = 1000.0
 
-[node name="Camera2D" type="Camera2D" parent="Platformer Level/Player" unique_id=1752143335]
+[node name="Camera2D" type="Camera2D" parent="Platformer Level/Player" unique_id=1239610533]
 position = Vector2(0, 1)
 limit_left = 0
 limit_top = -3500
 limit_right = 1280
 limit_bottom = 100
 position_smoothing_enabled = true
+script = ExtResource("5_camera")
 
-[node name="Spear" type="Node2D" parent="Platformer Level/Player" unique_id=1261131218]
-script = ExtResource("3_tbgi4")
+[node name="Spear" type="Node2D" parent="Platformer Level/Player" unique_id=1004838215]
+script = ExtResource("3_spear")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Platformer Level" unique_id=574082265]
-script = ExtResource("4_tefeu")
+[node name="Level Layout" parent="Platformer Level" unique_id=1764128550 instance=ExtResource("6_layout")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platformer Level/StaticBody2D" unique_id=911804451]
-shape = SubResource("RectangleShape2D_ha3k7")
+[node name="StaticBody2D" type="StaticBody2D" parent="Platformer Level" unique_id=1997429352]
+script = ExtResource("4_static")
 
-[node name="Level" type="Node2D" parent="." unique_id=1215886978]
-
-[node name="Floor" parent="Level" unique_id=303985686 instance=ExtResource("2_floor")]
-position = Vector2(320, 344)
-
-[node name="PlatformLow" parent="Level" unique_id=602402099 instance=ExtResource("3_platform")]
-position = Vector2(150, 270)
-
-[node name="PlatformMid" parent="Level" unique_id=1819446611 instance=ExtResource("3_platform")]
-position = Vector2(320, 210)
-
-[node name="PlatformHigh" parent="Level" unique_id=735504164 instance=ExtResource("3_platform")]
-position = Vector2(480, 150)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platformer Level/StaticBody2D" unique_id=1089859771]
+shape = SubResource("RectangleShape2D_dummy")

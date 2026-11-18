@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/checkpoint.gd" id="1_checkpoint"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_checkpoint"]
+resource_local_to_scene = true
+size = Vector2(40, 90)
+
+[node name="Checkpoint" type="Area2D" groups=["checkpoints"]]
+script = ExtResource("1_checkpoint")
+size = Vector2(40, 90)
+color = Color(1, 0.847059, 0.301961, 1)
+anchor_bottom = true
+active_color = Color(0.207843, 0.839216, 0.627451, 1)
+spawn_offset = Vector2(0, -40)
+
+[node name="Visual" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = -90.0
+offset_right = 20.0
+mouse_filter = 2
+color = Color(1, 0.847059, 0.301961, 1)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -45)
+shape = SubResource("RectangleShape2D_checkpoint")
