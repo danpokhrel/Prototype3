@@ -7,7 +7,7 @@ extends Camera2D
 
 ## Zoom range: at rest the zoom is zoom_at_rest; at zoom_speed_ref it is
 ## zoom_at_top_speed.
-@export var zoom_at_rest: float = 4.0
+@export var zoom_at_rest: float = 2.6
 @export var zoom_at_top_speed: float = 0.85
 @export var zoom_speed_ref: float = 800.0
 @export var zoom_smoothing: float = 4.0
@@ -28,6 +28,9 @@ extends Camera2D
 
 ## The player this camera follows. Defaults to the parent node.
 @export var player_path: NodePath = ^".."
+
+## Vertical position of the player on screen: 0.5 is the middle, 1.0 is the bottom edge.
+@export_range(0.5, 0.95) var player_screen_y: float = 0.8
 
 var _player: Player
 var _lookahead: Vector2 = Vector2.ZERO
@@ -71,8 +74,12 @@ func _process(delta: float) -> void:
 		_shake = Vector2.ZERO
 
 	_kick = _kick.lerp(Vector2.ZERO, _smoothing_weight(kick_recovery, delta))
-	offset = _lookahead + _shake + _kick
+	
+	# Shift the view up so the player sits low on screen. Divide by zoom so it
+	# stays correct as the zoom changes with speed.
+	var framing_y: float = (0.57 - player_screen_y) * get_viewport_rect().size.y / zoom_current
 
+	offset = Vector2(0.0, framing_y) + _lookahead + _shake + _kick
 
 ## Adds shake proportional to the impact, never weaker than what is running.
 func _add_shake(impact_speed: float, multiplier: float) -> void:
