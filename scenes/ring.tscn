@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bfr8aou0rxxp2"]
+
+[ext_resource type="Script" uid="uid://xj2ii3ua8ja5" path="res://scenes/ring.gd" id="1_03kdj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ha3k7"]
+
+[node name="Ring" type="Area2D" unique_id=1252988432]
+script = ExtResource("1_03kdj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1981083092]
+shape = SubResource("CircleShape2D_ha3k7")

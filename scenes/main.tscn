@@ -9,7 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://c2enj8krddotd" path="res://assets/Robot player sprite.png" id="5_o6xl0"]
 [ext_resource type="PackedScene" path="res://scenes/level_layout.tscn" id="6_layout"]
 [ext_resource type="Script" uid="uid://dgdexq5ux7m0s" path="res://scripts/animations.gd" id="6_tipki"]
+[ext_resource type="Script" uid="uid://iw0pmib8aah5" path="res://scenes/spearhitbox.gd" id="6_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://07ccptm63r87" path="res://assets/tileset berserk.png" id="7_85g3d"]
+[ext_resource type="Script" uid="uid://lhw5ooel3uyk" path="res://scenes/ring_spawner.gd" id="12_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://bfr8aou0rxxp2" path="res://scenes/ring.tscn" id="13_trceg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ha3k7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
 atlas = ExtResource("5_o6xl0")
@@ -116,6 +121,16 @@ scale = Vector2(2.658693, 1.5550001)
 texture = ExtResource("5_choun")
 offset = Vector2(9.42, 0)
 
+[node name="Spearhitbox" type="Area2D" parent="Platformer Level/Player/Spear" unique_id=1872560490]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("6_ya4ey")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platformer Level/Player/Spear/Spearhitbox" unique_id=16330353]
+position = Vector2(30, 0)
+scale = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_ha3k7")
+
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Platformer Level/Player" unique_id=1024077569]
 scale = Vector2(1.3125, 1.3125)
 sprite_frames = SubResource("SpriteFrames_ha0aq")
@@ -133,3 +148,7 @@ script = ExtResource("4_static")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platformer Level/StaticBody2D" unique_id=1089859771]
 shape = SubResource("RectangleShape2D_dummy")
+
+[node name="RingSpawner" type="Node2D" parent="Platformer Level" unique_id=579114224]
+script = ExtResource("12_eb6dy")
+ring_scene = ExtResource("13_trceg")
