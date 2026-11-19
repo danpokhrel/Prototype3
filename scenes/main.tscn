@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://de3i0nw1lp21m" path="res://scripts/spear.gd" id="3_spear"]
 [ext_resource type="Script" uid="uid://tdfribu4vccb" path="res://scripts/static_body_2d.gd" id="4_static"]
 [ext_resource type="Script" uid="uid://ce6kbgaia7nlr" path="res://scripts/player_camera.gd" id="5_camera"]
+[ext_resource type="Texture2D" uid="uid://bk4hxytct01ad" path="res://assets/Spear.png" id="5_choun"]
 [ext_resource type="Texture2D" uid="uid://c2enj8krddotd" path="res://assets/Robot player sprite.png" id="5_o6xl0"]
 [ext_resource type="PackedScene" path="res://scenes/level_layout.tscn" id="6_layout"]
 [ext_resource type="Script" uid="uid://dgdexq5ux7m0s" path="res://scripts/animations.gd" id="6_tipki"]
@@ -47,22 +48,38 @@ animations = [{
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_choun"]
 texture = ExtResource("7_85g3d")
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -0.02773714, -8, -0.027737617)
 3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -0.02773714, -8, -0.027737617)
 0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -0.02773714, -8, -0.027737617)
 1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -0.02773714, -8, -0.027737617)
 2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -0.02773714, -8, -0.027737617)
 
 [sub_resource type="TileSet" id="TileSet_ha0aq"]
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_choun")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dummy"]
@@ -89,13 +106,24 @@ script = ExtResource("5_camera")
 
 [node name="Spear" type="Node2D" parent="Platformer Level/Player" unique_id=1004838215]
 script = ExtResource("3_spear")
+length = 37.0
+thickness = 2.0
+thrust_distance = 46.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platformer Level/Player/Spear" unique_id=411721405]
+position = Vector2(-7.999998, -1.999999)
+scale = Vector2(2.658693, 1.5550001)
+texture = ExtResource("5_choun")
+offset = Vector2(9.42, 0)
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Platformer Level/Player" unique_id=1024077569]
+scale = Vector2(1.3125, 1.3125)
 sprite_frames = SubResource("SpriteFrames_ha0aq")
 animation = &"Walk"
 script = ExtResource("6_tipki")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Platformer Level" unique_id=1373488426]
+tile_map_data = PackedByteArray(0, 0, 39, 0, 254, 255, 0, 0, 2, 0, 2, 0, 0, 0, 40, 0, 254, 255, 0, 0, 2, 0, 2, 0, 0, 0)
 tile_set = SubResource("TileSet_ha0aq")
 
 [node name="Level Layout" parent="Platformer Level" unique_id=1764128550 instance=ExtResource("6_layout")]

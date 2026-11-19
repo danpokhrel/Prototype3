@@ -28,6 +28,8 @@ var _already_hit: Dictionary = {}
 var _previous_tip: Vector2
 var _tip_velocity: Vector2 = Vector2.ZERO
 var _ready_to_measure: bool = false
+var _sprite: Sprite2D
+var _sprite_base: Vector2
 
 func _ready() -> void:
 	_player = get_parent() as CharacterBody2D
@@ -52,6 +54,9 @@ func _ready() -> void:
 	_hit_area.area_entered.connect(_on_area_entered)
 	_hit_shape.disabled = true
 	_previous_tip = _tip_world_position()
+	_sprite = get_node_or_null("Sprite2D") as Sprite2D
+	if _sprite:
+		_sprite_base = _sprite.position
 
 func _physics_process(delta: float) -> void:
 	_cooldown = maxf(0.0, _cooldown - delta)
@@ -86,8 +91,8 @@ func _physics_process(delta: float) -> void:
 		_tip_velocity = (current_tip - _previous_tip) / delta
 	_previous_tip = current_tip
 	_ready_to_measure = true
-	queue_redraw()
-
+	_update_sprite()
+	
 func _start_attack(attack_type: String) -> void:
 	_mode = attack_type
 	_elapsed = 0.0
@@ -138,13 +143,15 @@ func _try_hit(target: Node2D) -> void:
 	_already_hit[key] = true
 	var damage: float = (impact_speed - minimum_impact_speed) * (stab_damage_per_speed if _mode == "stab" else swing_damage_per_speed)
 	receiver.call("take_damage", damage)
-
-func _draw() -> void:
-	# Placeholder spear, pointing along local +X.
-	var offset := _hit_area.position if _hit_area != null else Vector2.ZERO
-	draw_line(offset + Vector2(-14.0, 0.0), offset + Vector2(length - 12.0, 0.0), Color("946338"), 5.0)
-	draw_colored_polygon(PackedVector2Array([
-		offset + Vector2(length - 14.0, -7.0),
-		offset + Vector2(length + 10.0, 0.0),
-		offset + Vector2(length - 14.0, 7.0)
-	]), Color("cbd5df"))
+	
+func _update_sprite() -> void:
+	if _sprite == null:
+		return
+	# Follow the thrust, since the hit area slides forward during a stab.
+	# Facing left rotates the node 180 degrees, which would put the art
+	# upside down and mirror any vertical offset, so correct both.
+	_sprite.position = Vector2(
+		_sprite_base.x + _hit_area.position.x,
+		_sprite_base.y * _facing
+	)
+	_sprite.flip_v = _facing < 0.0
