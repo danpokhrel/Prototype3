@@ -122,13 +122,13 @@ sources/0 = SubResource("TileSetAtlasSource_jkv2x")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dummy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trceg"]
-size = Vector2(8, 1666)
+size = Vector2(9, 1665)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ha0aq"]
 size = Vector2(8.5, 3343)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8cwg2"]
-size = Vector2(208, 200)
+size = Vector2(210, 201)
 
 [node name="Main" type="Node2D" unique_id=355897515]
 
@@ -157,7 +157,7 @@ length = 37.0
 thickness = 2.0
 thrust_distance = 46.0
 
-[node name="Spear Sprite" type="Sprite2D" parent="Platformer Level/Player/Spear" unique_id=411721405]
+[node name="Sprite2D" type="Sprite2D" parent="Platformer Level/Player/Spear" unique_id=411721405]
 position = Vector2(-7.999998, -1.999999)
 scale = Vector2(2.658693, 1.5550001)
 texture = ExtResource("5_choun")
@@ -205,7 +205,7 @@ position = Vector2(310, -9)
 script = ExtResource("14_a8y0u")
 
 [node name="Wall Right" type="CollisionShape2D" parent="Platformer Level/Death Collisions" unique_id=1186756710]
-position = Vector2(678, -856)
+position = Vector2(677.5, -856.5)
 shape = SubResource("RectangleShape2D_trceg")
 
 [node name="Wall Left" type="CollisionShape2D" parent="Platformer Level/Death Collisions" unique_id=1535156921]
@@ -213,7 +213,7 @@ position = Vector2(-146, -1694.5)
 shape = SubResource("RectangleShape2D_ha0aq")
 
 [node name="Bottom Block" type="CollisionShape2D" parent="Platformer Level/Death Collisions" unique_id=657457732]
-position = Vector2(530, -123)
+position = Vector2(530, -123.5)
 shape = SubResource("RectangleShape2D_8cwg2")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=395852816]
