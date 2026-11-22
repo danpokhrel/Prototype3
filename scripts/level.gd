@@ -28,7 +28,6 @@ func _ready() -> void:
 		push_error("Level: no player assigned or in the player group")
 		return
 	checkpoint_position = start_position
-	player.global_position = to_global(start_position)
 	_connect_hazards()
 	_connect_checkpoints()
 	_connect_goal()
