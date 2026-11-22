@@ -137,7 +137,7 @@ collision_mask = 0
 script = ExtResource("6_ya4ey")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platformer Level/Player/Spear/Spearhitbox" unique_id=16330353]
-position = Vector2(30, 0)
+position = Vector2(63, 0)
 scale = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_ha3k7")
 
