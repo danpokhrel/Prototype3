@@ -31,21 +31,6 @@ func _ready():
 
 	queue_redraw()
 
-
-func _draw():
-	# Draw a hollow gold ring
-	draw_arc(
-		Vector2.ZERO,
-		(outer_radius + inner_radius) / 2.0,
-		0.0,
-		TAU,
-		64,
-		Color.GOLD,
-		outer_radius - inner_radius,
-		true
-	)
-
-
 func _physics_process(_delta):
 	if scored:
 		return

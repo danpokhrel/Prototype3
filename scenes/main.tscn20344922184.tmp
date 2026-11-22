@@ -1,0 +1,167 @@
+[gd_scene format=4 uid="uid://bw6b1cfyrd1kc"]
+
+[ext_resource type="PackedScene" uid="uid://c7kwgrdj2aytp" path="res://scenes/player.tscn" id="1_player"]
+[ext_resource type="Script" uid="uid://cssfrhj70r03i" path="res://scripts/level.gd" id="2_level"]
+[ext_resource type="Script" uid="uid://de3i0nw1lp21m" path="res://scripts/spear.gd" id="3_spear"]
+[ext_resource type="Script" uid="uid://tdfribu4vccb" path="res://scripts/static_body_2d.gd" id="4_static"]
+[ext_resource type="Script" uid="uid://ce6kbgaia7nlr" path="res://scripts/player_camera.gd" id="5_camera"]
+[ext_resource type="Texture2D" uid="uid://bk4hxytct01ad" path="res://assets/Spear.png" id="5_choun"]
+[ext_resource type="Texture2D" uid="uid://c2enj8krddotd" path="res://assets/Robot player sprite.png" id="5_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://dlu2ieencg32p" path="res://scenes/level_layout.tscn" id="6_layout"]
+[ext_resource type="Script" uid="uid://dgdexq5ux7m0s" path="res://scripts/animations.gd" id="6_tipki"]
+[ext_resource type="Script" uid="uid://iw0pmib8aah5" path="res://scenes/spearhitbox.gd" id="6_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://07ccptm63r87" path="res://assets/tileset berserk.png" id="7_85g3d"]
+[ext_resource type="Script" uid="uid://lhw5ooel3uyk" path="res://scenes/ring_spawner.gd" id="12_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://bfr8aou0rxxp2" path="res://scenes/ring.tscn" id="13_trceg"]
+[ext_resource type="Script" uid="uid://bs66a67hch8mu" path="res://scripts/DeathArea.gd" id="14_a8y0u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ha3k7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
+atlas = ExtResource("5_o6xl0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
+atlas = ExtResource("5_o6xl0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85g3d"]
+atlas = ExtResource("5_o6xl0")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ha0aq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_choun")
+}],
+"loop": 1,
+"name": &"Jetpack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tipki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85g3d")
+}],
+"loop": 1,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_choun"]
+texture = ExtResource("7_85g3d")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.049139023, -8, 0.049138546)
+2:2/0/physics_layer_1/polygon_0/one_way = true
+3:2/0 = 0
+0:3/0 = 0
+0:3/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.049139023, -8, 0.049138546)
+0:3/0/physics_layer_1/polygon_0/one_way = true
+1:3/0 = 0
+2:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ha0aq"]
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_choun")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dummy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trceg"]
+size = Vector2(48, 7.999998)
+
+[node name="Main" type="Node2D" unique_id=355897515]
+
+[node name="Platformer Level" type="Node2D" parent="." unique_id=303868873]
+script = ExtResource("2_level")
+
+[node name="Player" parent="Platformer Level" unique_id=925740872 instance=ExtResource("1_player")]
+position = Vector2(640, -48)
+dash_speed = 1000.0
+dash_duration = 0.5
+dash_down_speed = 1000.0
+
+[node name="Camera2D" type="Camera2D" parent="Platformer Level/Player" unique_id=1239610533]
+position = Vector2(0, 1)
+limit_left = 0
+limit_top = -3500
+limit_right = 1280
+limit_bottom = 100
+position_smoothing_enabled = true
+script = ExtResource("5_camera")
+
+[node name="Spear" type="Node2D" parent="Platformer Level/Player" unique_id=1004838215]
+script = ExtResource("3_spear")
+length = 37.0
+thickness = 2.0
+thrust_distance = 46.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platformer Level/Player/Spear" unique_id=411721405]
+position = Vector2(-7.999998, -1.999999)
+scale = Vector2(2.658693, 1.5550001)
+texture = ExtResource("5_choun")
+offset = Vector2(9.42, 0)
+
+[node name="Spearhitbox" type="Area2D" parent="Platformer Level/Player/Spear" unique_id=1872560490]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("6_ya4ey")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platformer Level/Player/Spear/Spearhitbox" unique_id=16330353]
+position = Vector2(30, 0)
+scale = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_ha3k7")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Platformer Level/Player" unique_id=1024077569]
+scale = Vector2(1.3125, 1.3125)
+sprite_frames = SubResource("SpriteFrames_ha0aq")
+animation = &"Walk"
+script = ExtResource("6_tipki")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Platformer Level" unique_id=1373488426]
+tile_map_data = PackedByteArray("AAAJAP7/AAAAAAAAAGAKAP7/AAABAAEAAGALAP7/AAABAAEAAGAMAP7/AAABAAEAAGANAP7/AAABAAEAAGAOAP7/AAABAAEAAGAPAP7/AAABAAEAAGAQAP7/AAABAAEAAGARAP7/AAABAAEAAGASAP7/AAABAAEAAGATAP7/AAABAAEAAGAUAP7/AAABAAEAAGAVAP7/AAABAAEAAGAWAP7/AAABAAEAAGAXAP7/AAABAAEAAGAYAP7/AAABAAEAAGAZAP7/AAABAAEAAGAaAP7/AAABAAEAAGAbAP7/AAABAAEAAGAcAP7/AAABAAEAAGAdAP7/AAABAAEAAGAeAP7/AAABAAEAAGAfAP7/AAABAAEAAGAgAP7/AAABAAEAAGAhAP7/AAABAAEAAGAiAP7/AAABAAEAAGAjAP7/AAABAAEAAGAkAP7/AAABAAEAAGAlAP7/AAABAAEAAGAmAP7/AAABAAEAAGAnAP7/AAABAAEAAGAoAP7/AAABAAEAAGApAP7/AAABAAEAAGAqAP7/AAABAAEAAGArAP7/AAABAAEAAGAsAP7/AAABAAEAAGAtAP7/AAABAAEAAGAuAP7/AAABAAEAAGAvAP7/AAABAAEAAGAwAP7/AAABAAEAAGAxAP7/AAABAAEAAGAyAP7/AAABAAEAAGAzAP7/AAABAAEAAGA0AP7/AAABAAEAAGA1AP7/AAABAAEAAGA2AP7/AAABAAEAAGA3AP7/AAABAAEAAGA4AP7/AAABAAEAAGA5AP7/AAABAAEAAGA6AP7/AAABAAEAAGA7AP7/AAABAAEAAGA8AP7/AAABAAEAAGA9AP7/AAABAAEAAGA+AP7/AAAAAAAAAFAsAPv/AAACAAIAAAAtAPv/AAACAAIAAAAuAPv/AAACAAIAAAAvAPv/AAACAAIAAAAwAPv/AAACAAIAAAAxAPv/AAACAAIAAAA+AP3/AAABAAEAAAA+APz/AAABAAEAAAA+APv/AAABAAEAAAA+APr/AAABAAEAAAA+APn/AAABAAEAAAA+APj/AAABAAEAAAA+APf/AAABAAEAAAA+APb/AAABAAEAAAA+APX/AAABAAEAAAA+APT/AAABAAEAAAA+APP/AAABAAEAAAA+APL/AAABAAEAAAA+APH/AAABAAEAAAA+APD/AAABAAEAAAA+AO//AAABAAEAAAA+AO7/AAABAAEAAAA+AO3/AAABAAEAAAA+AOz/AAABAAEAAAA+AOv/AAABAAEAAAA+AOr/AAABAAEAAAA+AOn/AAABAAEAAAA+AOj/AAABAAEAAAA+AOf/AAABAAEAAAA+AOb/AAABAAEAAAA+AOX/AAABAAEAAAA+AOT/AAABAAEAAAA+AOP/AAABAAEAAAA+AOL/AAABAAEAAAA+AOH/AAABAAEAAAA+AOD/AAABAAEAAAA+AN//AAABAAEAAAA+AN7/AAABAAEAAAA+AN3/AAABAAEAAAA+ANz/AAABAAEAAAA+ANv/AAABAAEAAAA+ANr/AAABAAEAAAA+ANn/AAABAAEAAAA+ANj/AAABAAEAAAA+ANf/AAABAAEAAAA+ANb/AAABAAEAAAA+ANX/AAABAAEAAAA+ANT/AAABAAEAAAAJAP3/AAABAAEAAAAJAPz/AAABAAEAAAAJAPv/AAABAAEAAAAJAPr/AAABAAEAAAAJAPn/AAABAAEAAAAJAPj/AAABAAEAAAAJAPf/AAABAAEAAAAJAPb/AAABAAEAAAAJAPX/AAABAAEAAAAJAPT/AAABAAEAAAAJAPP/AAABAAEAAAAJAPL/AAABAAEAAAAJAPH/AAABAAEAAAAJAPD/AAABAAEAAAAJAO//AAABAAEAAAAJAO7/AAABAAEAAAAJAO3/AAABAAEAAAAJAOz/AAABAAEAAAAJAOv/AAABAAEAAAAJAOr/AAABAAEAAAAJAOn/AAABAAEAAAAJAOj/AAABAAEAAAAJAOf/AAABAAEAAAAJAOb/AAABAAEAAAAJAOX/AAABAAEAAAAJAOT/AAABAAEAAAAJAOP/AAABAAEAAAAJAOL/AAABAAEAAAAJAOH/AAABAAEAAAAJAOD/AAABAAEAAAAJAN//AAABAAEAAAAJAN7/AAABAAEAAAAJAN3/AAABAAEAAAAJANz/AAABAAEAAAAJANv/AAABAAEAAAAJANr/AAABAAEAAAAJANn/AAABAAEAAAAJANj/AAABAAEAAAAJANf/AAABAAEAAAAJANb/AAABAAEAAAAJANX/AAABAAEAAAAJANT/AAABAAEAAAAJANP/AAAAAAAAAGA+ANP/AAAAAAAAAFAKANP/AAABAAEAAGALANP/AAABAAEAAGAMANP/AAABAAEAAGANANP/AAABAAEAAGASANP/AAABAAEAAGATANP/AAABAAEAAGARANP/AAABAAEAAGAQANP/AAABAAEAAGAPANP/AAABAAEAAGAOANP/AAABAAEAAGAUANP/AAABAAEAAGAVANP/AAABAAEAAGAWANP/AAABAAEAAGAXANP/AAABAAEAAGAYANP/AAABAAEAAGAZANP/AAABAAEAAGAaANP/AAABAAEAAGAbANP/AAABAAEAAGAcANP/AAABAAEAAGAdANP/AAABAAEAAGAeANP/AAABAAEAAGAfANP/AAABAAEAAGAgANP/AAABAAEAAGAhANP/AAABAAEAAGAiANP/AAABAAEAAGAjANP/AAABAAEAAGAkANP/AAABAAEAAGAlANP/AAABAAEAAGAmANP/AAABAAEAAGAnANP/AAABAAEAAGAoANP/AAABAAEAAGApANP/AAABAAEAAGAqANP/AAABAAEAAGArANP/AAABAAEAAGAsANP/AAABAAEAAGAtANP/AAABAAEAAGAuANP/AAABAAEAAGAvANP/AAABAAEAAGAwANP/AAABAAEAAGAxANP/AAABAAEAAGAyANP/AAABAAEAAGAzANP/AAABAAEAAGA0ANP/AAABAAEAAGA1ANP/AAABAAEAAGA2ANP/AAABAAEAAGA3ANP/AAABAAEAAGA4ANP/AAABAAEAAGA5ANP/AAABAAEAAGA6ANP/AAABAAEAAGA7ANP/AAABAAEAAGA8ANP/AAABAAEAAGA9ANP/AAABAAEAAGAlAPv/AAADAAIAAAAkAPv/AAADAAIAAAAjAPv/AAADAAIAAAA=")
+tile_set = SubResource("TileSet_ha0aq")
+
+[node name="Level Layout" parent="Platformer Level" unique_id=1764128550 instance=ExtResource("6_layout")]
+position = Vector2(-5000, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Platformer Level" unique_id=1997429352]
+script = ExtResource("4_static")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platformer Level/StaticBody2D" unique_id=1089859771]
+shape = SubResource("RectangleShape2D_dummy")
+
+[node name="RingSpawner" type="Node2D" parent="Platformer Level" unique_id=579114224]
+script = ExtResource("12_eb6dy")
+ring_scene = ExtResource("13_trceg")
+
+[node name="Area2D" type="Area2D" parent="Platformer Level" unique_id=2063604623]
+position = Vector2(310, -9)
+script = ExtResource("14_a8y0u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platformer Level/Area2D" unique_id=1186756710]
+position = Vector2(274, -67)
+shape = SubResource("RectangleShape2D_trceg")

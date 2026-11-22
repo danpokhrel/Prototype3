@@ -174,6 +174,8 @@ var momentum: float = 0.0
 ## Stamina (0..max_stamina)
 var stamina: float = 0.0
 
+var respawn_position: Vector2
+
 ## Input buffers: countdown timers set by input events, consumed per tick.
 var _flap_buffer_timer: float = 0.0
 var _dash_buffer_timer: float = 0.0
@@ -188,6 +190,7 @@ var _hitstop_end_msec: int = 0
 ## Starts the run with a full stamina bar.
 func _ready() -> void:
 	stamina = max_stamina
+	respawn_position = global_position
 
 
 ## Captures flap and dash presses as buffered events.
@@ -460,6 +463,10 @@ func _restore_time_scale() -> void:
 func _exit_tree() -> void:
 	if Engine.time_scale == hitstop_time_scale:
 		Engine.time_scale = 1.0
+		
+func die() -> void:
+	global_position = respawn_position
+	velocity = Vector2.ZERO
 
 
 ## Drains the momentum meter passively; faster on the ground.
