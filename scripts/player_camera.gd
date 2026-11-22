@@ -18,7 +18,7 @@ extends Camera2D
 
 ## Shake on hard landings and dashes.
 @export var landing_shake_impact_ref: float = 600.0
-@export var max_shake_strength: float = 6.0
+@export var max_shake_strength: float = 0
 @export var shake_decay: float = 8.0
 
 ## Directional kick: the camera lurches a short distance opposite the impulse
@@ -28,6 +28,9 @@ extends Camera2D
 
 ## The player this camera follows. Defaults to the parent node.
 @export var player_path: NodePath = ^".."
+
+## Vertical position of the player on screen: 0.5 is the middle, 1.0 is the bottom edge.
+@export_range(0.5, 0.95) var player_screen_y: float = 0.8
 
 var _player: Player
 var _lookahead: Vector2 = Vector2.ZERO
@@ -71,8 +74,12 @@ func _process(delta: float) -> void:
 		_shake = Vector2.ZERO
 
 	_kick = _kick.lerp(Vector2.ZERO, _smoothing_weight(kick_recovery, delta))
-	offset = _lookahead + _shake + _kick
+	
+	# Shift the view up so the player sits low on screen. Divide by zoom so it
+	# stays correct as the zoom changes with speed.
+	var framing_y: float = (0.5 - player_screen_y) * get_viewport_rect().size.y / zoom_current
 
+	offset = Vector2(0.0, framing_y) + _lookahead + _shake + _kick
 
 ## Adds shake proportional to the impact, never weaker than what is running.
 func _add_shake(impact_speed: float, multiplier: float) -> void:

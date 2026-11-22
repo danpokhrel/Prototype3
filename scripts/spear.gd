@@ -67,9 +67,17 @@ func _physics_process(delta: float) -> void:
 			_start_attack("swing")
 
 	if _mode == "":
-		if absf(_player.velocity.x) > 25.0:
+		var direction := Input.get_axis(
+			_player.input_left,
+			_player.input_right
+		)
+		if direction != 0.0:
+			_facing = direction
+		elif absf(_player.velocity.x) > 25.0:
 			_facing = signf(_player.velocity.x)
+			
 		rotation = 0.0 if _facing > 0.0 else PI
+			
 		_hit_area.position = Vector2.ZERO
 		_hit_shape.set_deferred("disabled", true)
 	else:

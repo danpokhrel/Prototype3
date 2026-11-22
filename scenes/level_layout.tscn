@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene format=3 uid="uid://dlu2ieencg32p"]
 
 [ext_resource type="PackedScene" path="res://scenes/prefabs/platform.tscn" id="1_platform"]
 [ext_resource type="PackedScene" path="res://scenes/prefabs/hazard.tscn" id="2_hazard"]
@@ -6,165 +6,162 @@
 [ext_resource type="PackedScene" path="res://scenes/prefabs/goal.tscn" id="4_goal"]
 [ext_resource type="PackedScene" path="res://scenes/prefabs/curb.tscn" id="5_curb"]
 
-[node name="Level Layout" type="Node2D"]
+[node name="Level Layout" type="Node2D" unique_id=1591969203]
 
-[node name="Bounds" type="Node2D" parent="."]
+[node name="Bounds" type="Node2D" parent="." unique_id=593086883]
 
-[node name="Ground" parent="Bounds" instance=ExtResource("1_platform")]
+[node name="Ground" parent="Bounds" unique_id=1587009289 instance=ExtResource("1_platform")]
 position = Vector2(640, 0)
 size = Vector2(1280, 64)
 color = Color(0.168627, 0.184314, 0.290196, 1)
 one_way = false
 
-[node name="WallLeft" parent="Bounds" instance=ExtResource("1_platform")]
+[node name="WallLeft" parent="Bounds" unique_id=65710939 instance=ExtResource("1_platform")]
 position = Vector2(-32, -3500)
 size = Vector2(64, 3600)
 color = Color(0.168627, 0.184314, 0.290196, 1)
 one_way = false
 
-[node name="WallRight" parent="Bounds" instance=ExtResource("1_platform")]
+[node name="WallRight" parent="Bounds" unique_id=1529346939 instance=ExtResource("1_platform")]
 position = Vector2(1312, -3500)
 size = Vector2(64, 3600)
 color = Color(0.168627, 0.184314, 0.290196, 1)
 one_way = false
 
-[node name="Zone0_Runway" type="Node2D" parent="."]
+[node name="Zone0_Runway" type="Node2D" parent="." unique_id=1612950173]
 
-[node name="Curb1" parent="Zone0_Runway" instance=ExtResource("5_curb")]
+[node name="Curb1" parent="Zone0_Runway" unique_id=400314462 instance=ExtResource("5_curb")]
 position = Vector2(200, 0)
 
-[node name="Curb2" parent="Zone0_Runway" instance=ExtResource("5_curb")]
+[node name="Curb2" parent="Zone0_Runway" unique_id=562668219 instance=ExtResource("5_curb")]
 position = Vector2(400, 0)
 
-[node name="Curb3" parent="Zone0_Runway" instance=ExtResource("5_curb")]
+[node name="Curb3" parent="Zone0_Runway" unique_id=774039620 instance=ExtResource("5_curb")]
 position = Vector2(600, 0)
 
-[node name="Curb4" parent="Zone0_Runway" instance=ExtResource("5_curb")]
+[node name="Curb4" parent="Zone0_Runway" unique_id=89272010 instance=ExtResource("5_curb")]
 position = Vector2(800, 0)
 
-[node name="Curb5" parent="Zone0_Runway" instance=ExtResource("5_curb")]
+[node name="Curb5" parent="Zone0_Runway" unique_id=827648645 instance=ExtResource("5_curb")]
 position = Vector2(1000, 0)
 
-[node name="Zone1_FlapLadder" type="Node2D" parent="."]
+[node name="Zone1_FlapLadder" type="Node2D" parent="." unique_id=933121103]
 
-[node name="Ledge1" parent="Zone1_FlapLadder" instance=ExtResource("1_platform")]
+[node name="Ledge1" parent="Zone1_FlapLadder" unique_id=99302738 instance=ExtResource("1_platform")]
 position = Vector2(250, -150)
 size = Vector2(180, 16)
 
-[node name="Ledge2" parent="Zone1_FlapLadder" instance=ExtResource("1_platform")]
+[node name="Ledge2" parent="Zone1_FlapLadder" unique_id=1243391022 instance=ExtResource("1_platform")]
 position = Vector2(900, -300)
 size = Vector2(180, 16)
 
-[node name="Ledge3" parent="Zone1_FlapLadder" instance=ExtResource("1_platform")]
+[node name="Ledge3" parent="Zone1_FlapLadder" unique_id=1363870747 instance=ExtResource("1_platform")]
 position = Vector2(250, -450)
 size = Vector2(180, 16)
 
-[node name="Ledge4" parent="Zone1_FlapLadder" instance=ExtResource("1_platform")]
+[node name="Ledge4" parent="Zone1_FlapLadder" unique_id=55224900 instance=ExtResource("1_platform")]
 position = Vector2(900, -600)
 size = Vector2(180, 16)
 
-[node name="Shelf" parent="Zone1_FlapLadder" instance=ExtResource("1_platform")]
+[node name="Shelf" parent="Zone1_FlapLadder" unique_id=2119926805 instance=ExtResource("1_platform")]
 position = Vector2(640, -750)
 size = Vector2(360, 16)
 color = Color(0.207843, 0.839216, 0.627451, 1)
 
-[node name="Checkpoint" parent="Zone1_FlapLadder" instance=ExtResource("3_checkpoint")]
+[node name="Checkpoint" parent="Zone1_FlapLadder" unique_id=2074803180 instance=ExtResource("3_checkpoint")]
 position = Vector2(640, -750)
 
-[node name="Zone2_HoverTest" type="Node2D" parent="."]
+[node name="Zone2_HoverTest" type="Node2D" parent="." unique_id=1244535731]
 
-[node name="Pillar1" parent="Zone2_HoverTest" instance=ExtResource("1_platform")]
+[node name="Pillar1" parent="Zone2_HoverTest" unique_id=1512258406 instance=ExtResource("1_platform")]
 position = Vector2(640, -900)
 size = Vector2(80, 16)
 
-[node name="Pillar2" parent="Zone2_HoverTest" instance=ExtResource("1_platform")]
+[node name="Pillar2" parent="Zone2_HoverTest" unique_id=2015583598 instance=ExtResource("1_platform")]
 position = Vector2(300, -1050)
 size = Vector2(80, 16)
 
-[node name="Pillar3" parent="Zone2_HoverTest" instance=ExtResource("1_platform")]
+[node name="Pillar3" parent="Zone2_HoverTest" unique_id=2071175136 instance=ExtResource("1_platform")]
 position = Vector2(980, -1200)
 size = Vector2(80, 16)
 
-[node name="Shelf" parent="Zone2_HoverTest" instance=ExtResource("1_platform")]
+[node name="Shelf" parent="Zone2_HoverTest" unique_id=1338747824 instance=ExtResource("1_platform")]
 position = Vector2(640, -1350)
 size = Vector2(360, 16)
 color = Color(0.207843, 0.839216, 0.627451, 1)
 
-[node name="Checkpoint" parent="Zone2_HoverTest" instance=ExtResource("3_checkpoint")]
-position = Vector2(640, -1350)
+[node name="Checkpoint" parent="Zone2_HoverTest" unique_id=1389839416 instance=ExtResource("3_checkpoint")]
+position = Vector2(640, -1351)
 
-[node name="Zone3_BounceShafts" type="Node2D" parent="."]
+[node name="Zone3_BounceShafts" type="Node2D" parent="." unique_id=1049686294]
 
-[node name="Ledge1" parent="Zone3_BounceShafts" instance=ExtResource("1_platform")]
+[node name="Ledge1" parent="Zone3_BounceShafts" unique_id=909712199 instance=ExtResource("1_platform")]
 position = Vector2(200, -1500)
 size = Vector2(140, 16)
 
-[node name="Ledge2" parent="Zone3_BounceShafts" instance=ExtResource("1_platform")]
+[node name="Ledge2" parent="Zone3_BounceShafts" unique_id=1186010875 instance=ExtResource("1_platform")]
 position = Vector2(1080, -1650)
 size = Vector2(140, 16)
 
-[node name="Ledge3" parent="Zone3_BounceShafts" instance=ExtResource("1_platform")]
+[node name="Ledge3" parent="Zone3_BounceShafts" unique_id=1007701245 instance=ExtResource("1_platform")]
 position = Vector2(200, -1800)
 size = Vector2(140, 16)
 
-[node name="Ledge4" parent="Zone3_BounceShafts" instance=ExtResource("1_platform")]
+[node name="Ledge4" parent="Zone3_BounceShafts" unique_id=203509748 instance=ExtResource("1_platform")]
 position = Vector2(1080, -1950)
 size = Vector2(140, 16)
 
-[node name="Shelf" parent="Zone3_BounceShafts" instance=ExtResource("1_platform")]
+[node name="Shelf" parent="Zone3_BounceShafts" unique_id=1736970325 instance=ExtResource("1_platform")]
 position = Vector2(640, -2100)
 size = Vector2(360, 16)
 color = Color(0.207843, 0.839216, 0.627451, 1)
 
-[node name="Checkpoint" parent="Zone3_BounceShafts" instance=ExtResource("3_checkpoint")]
+[node name="Checkpoint" parent="Zone3_BounceShafts" unique_id=864161958 instance=ExtResource("3_checkpoint")]
 position = Vector2(640, -2100)
 
-[node name="Zone4_DashGaps" type="Node2D" parent="."]
+[node name="Zone4_DashGaps" type="Node2D" parent="." unique_id=1429861317]
 
-[node name="Ledge1" parent="Zone4_DashGaps" instance=ExtResource("1_platform")]
+[node name="Ledge1" parent="Zone4_DashGaps" unique_id=1308733228 instance=ExtResource("1_platform")]
 position = Vector2(160, -2250)
-size = Vector2(160, 16)
 
-[node name="Hazard1" parent="Zone4_DashGaps" instance=ExtResource("2_hazard")]
+[node name="Hazard1" parent="Zone4_DashGaps" unique_id=1643107210 instance=ExtResource("2_hazard")]
 position = Vector2(420, -2210)
 
-[node name="Ledge2" parent="Zone4_DashGaps" instance=ExtResource("1_platform")]
+[node name="Ledge2" parent="Zone4_DashGaps" unique_id=1861860770 instance=ExtResource("1_platform")]
 position = Vector2(560, -2400)
-size = Vector2(160, 16)
 
-[node name="Hazard2" parent="Zone4_DashGaps" instance=ExtResource("2_hazard")]
+[node name="Hazard2" parent="Zone4_DashGaps" unique_id=790236817 instance=ExtResource("2_hazard")]
 position = Vector2(820, -2360)
 
-[node name="Ledge3" parent="Zone4_DashGaps" instance=ExtResource("1_platform")]
+[node name="Ledge3" parent="Zone4_DashGaps" unique_id=902784894 instance=ExtResource("1_platform")]
 position = Vector2(960, -2550)
-size = Vector2(160, 16)
 
-[node name="Shelf" parent="Zone4_DashGaps" instance=ExtResource("1_platform")]
+[node name="Shelf" parent="Zone4_DashGaps" unique_id=977441654 instance=ExtResource("1_platform")]
 position = Vector2(640, -2700)
 size = Vector2(360, 16)
 color = Color(0.207843, 0.839216, 0.627451, 1)
 
-[node name="Checkpoint" parent="Zone4_DashGaps" instance=ExtResource("3_checkpoint")]
+[node name="Checkpoint" parent="Zone4_DashGaps" unique_id=2101499706 instance=ExtResource("3_checkpoint")]
 position = Vector2(640, -2700)
 
-[node name="Zone5_Summit" type="Node2D" parent="."]
+[node name="Zone5_Summit" type="Node2D" parent="." unique_id=902674125]
 
-[node name="Ledge1" parent="Zone5_Summit" instance=ExtResource("1_platform")]
+[node name="Ledge1" parent="Zone5_Summit" unique_id=1360369634 instance=ExtResource("1_platform")]
 position = Vector2(440, -2850)
 size = Vector2(110, 16)
 
-[node name="Ledge2" parent="Zone5_Summit" instance=ExtResource("1_platform")]
+[node name="Ledge2" parent="Zone5_Summit" unique_id=1617247373 instance=ExtResource("1_platform")]
 position = Vector2(840, -2980)
 size = Vector2(110, 16)
 
-[node name="Ledge3" parent="Zone5_Summit" instance=ExtResource("1_platform")]
+[node name="Ledge3" parent="Zone5_Summit" unique_id=605758923 instance=ExtResource("1_platform")]
 position = Vector2(440, -3110)
 size = Vector2(110, 16)
 
-[node name="SummitShelf" parent="Zone5_Summit" instance=ExtResource("1_platform")]
+[node name="SummitShelf" parent="Zone5_Summit" unique_id=1279978558 instance=ExtResource("1_platform")]
 position = Vector2(640, -3260)
 size = Vector2(360, 16)
 color = Color(0.207843, 0.839216, 0.627451, 1)
 
-[node name="Goal" parent="Zone5_Summit" instance=ExtResource("4_goal")]
+[node name="Goal" parent="Zone5_Summit" unique_id=2089292009 instance=ExtResource("4_goal")]
 position = Vector2(640, -3260)
