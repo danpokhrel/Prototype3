@@ -84,7 +84,8 @@ func _physics_process(delta: float) -> void:
 		_elapsed += delta
 		var progress: float = minf(_elapsed / _duration, 1.0)
 		if _mode == "stab":
-			rotation = 0.0 if _facing > 0.0 else PI
+			#makes momentum the direction of stab (remove for player direction)
+			#rotation = 0.0 if _facing > 0.0 else PI
 			_hit_area.position.x = thrust_distance * sin(progress * PI)
 		else:
 			var start_angle: float = -deg_to_rad(swing_arc_degrees) * 0.5
