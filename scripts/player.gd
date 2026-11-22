@@ -39,6 +39,8 @@ signal chain_changed(count: int)
 ## Air acceleration multiplier while an action chain is active (chaining feel).
 @export_range(1.0, 2.0) var chain_air_control_bonus: float = 1.3
 
+@export var death_tile_layer: TileMapLayer
+
 ## Flapping movement. Lower gravity and a lower fall clamp make the flap
 ## floaty; the rise curve punishes spam and rewards apex timing.
 @export var flap_impulse: float = 280.0
@@ -301,6 +303,18 @@ func _physics_process(delta: float) -> void:
 	var was_on_floor: bool = grounded
 	var fall_speed: float = velocity.y
 	move_and_slide()
+	
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		print("Collided with: ", collider.name)
+		
+		if collider == death_tile_layer:
+			print("DEATH TILE DETECTED!")
+			die()
+			break
+						
 	if is_on_floor() and not was_on_floor and fall_speed >= bounce_min_fall_speed \
 	and direction != 0.0:
 		var burst: float = direction * fall_speed * bounce_conversion

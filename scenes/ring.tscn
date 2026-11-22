@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bfr8aou0rxxp2"]
 
-[ext_resource type="Script" uid="uid://xj2ii3ua8ja5" path="res://scenes/ring.gd" id="1_03kdj"]
+[ext_resource type="Script" uid="uid://xj2ii3ua8ja5" path="res://scripts/ring.gd" id="1_03kdj"]
 [ext_resource type="Texture2D" uid="uid://o1ct7u77o6a" path="res://assets/ring.png" id="2_f7lrs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ha3k7"]
