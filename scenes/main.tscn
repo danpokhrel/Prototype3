@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://duled50a1sytx" path="res://scripts/staminabar.gd" id="15_jkv2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ha3k7"]
-size = Vector2(41, 20)
+size = Vector2(51, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
 atlas = ExtResource("5_o6xl0")
@@ -169,7 +169,7 @@ collision_mask = 0
 script = ExtResource("6_ya4ey")
 
 [node name="StabCollision" type="CollisionShape2D" parent="Platformer Level/Player/Spear/Spearhitbox" unique_id=16330353]
-position = Vector2(52.5, 0)
+position = Vector2(47.5, 0)
 scale = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_ha3k7")
 

@@ -1,0 +1,180 @@
+[gd_scene format=4 uid="uid://rowmt35wwtye"]
+
+[ext_resource type="PackedScene" uid="uid://c7kwgrdj2aytp" path="res://scenes/player.tscn" id="1_n1xcn"]
+[ext_resource type="Script" uid="uid://de3i0nw1lp21m" path="res://scripts/spear.gd" id="2_wlke7"]
+[ext_resource type="Texture2D" uid="uid://bk4hxytct01ad" path="res://assets/Spear.png" id="3_5gvjt"]
+[ext_resource type="Script" uid="uid://iw0pmib8aah5" path="res://scripts/spearhitbox.gd" id="4_gxki5"]
+[ext_resource type="Texture2D" uid="uid://c2enj8krddotd" path="res://assets/Robot player sprite.png" id="5_36sji"]
+[ext_resource type="Script" uid="uid://dgdexq5ux7m0s" path="res://scripts/animations.gd" id="6_g511s"]
+[ext_resource type="Texture2D" uid="uid://07ccptm63r87" path="res://assets/tileset berserk.png" id="7_wlke7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0yrc4"]
+size = Vector2(51, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
+atlas = ExtResource("5_36sji")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
+atlas = ExtResource("5_36sji")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85g3d"]
+atlas = ExtResource("5_36sji")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p57me"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_choun")
+}],
+"loop": 1,
+"name": &"Jetpack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tipki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85g3d")
+}],
+"loop": 1,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5gvjt"]
+texture = ExtResource("7_wlke7")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.049139023, -8, 0.049138546)
+2:2/0/physics_layer_1/polygon_0/one_way = true
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.0832119, -8, 0.015656948)
+3:2/0/custom_data_0 = true
+0:3/0 = 0
+0:3/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.049139023, -8, 0.049138546)
+0:3/0/physics_layer_1/polygon_0/one_way = true
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.0832119, -8, 0.015656948)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.0832119, -8, 0.015656948)
+
+[sub_resource type="TileSet" id="TileSet_gxki5"]
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 1
+custom_data_layer_0/name = "death"
+custom_data_layer_0/type = 1
+sources/0 = SubResource("TileSetAtlasSource_5gvjt")
+
+[node name="Main" type="Node2D" unique_id=432426761]
+
+[node name="Player" parent="." unique_id=2066396715 node_paths=PackedStringArray("death_tile_layer") instance=ExtResource("1_n1xcn")]
+position = Vector2(240, -48)
+death_tile_layer = NodePath("")
+dash_speed = 1000.0
+dash_duration = 0.5
+dash_down_speed = 1000.0
+input_left = &"p1_left"
+input_right = &"p1_right"
+input_down = &"p1_down"
+input_flap = &"p1_jump"
+input_dash = &"p1_dash"
+
+[node name="Spear" type="Node2D" parent="Player" unique_id=120476572]
+script = ExtResource("2_wlke7")
+length = 37.0
+thickness = 2.0
+thrust_distance = 46.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Spear" unique_id=540882295]
+position = Vector2(-7.999998, -1.999999)
+scale = Vector2(2.658693, 1.5550001)
+texture = ExtResource("3_5gvjt")
+offset = Vector2(9.42, 0)
+
+[node name="Spearhitbox" type="Area2D" parent="Player/Spear" unique_id=1778495777]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_gxki5")
+
+[node name="StabCollision" type="CollisionShape2D" parent="Player/Spear/Spearhitbox" unique_id=791408943]
+position = Vector2(47.5, 0)
+scale = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_0yrc4")
+
+[node name="Robot Sprite" type="AnimatedSprite2D" parent="Player" unique_id=588783654]
+scale = Vector2(1.3125, 1.3125)
+sprite_frames = SubResource("SpriteFrames_p57me")
+animation = &"Walk"
+script = ExtResource("6_g511s")
+
+[node name="Player2" parent="." unique_id=1497428611 node_paths=PackedStringArray("death_tile_layer") instance=ExtResource("1_n1xcn")]
+modulate = Color(0.28778407, 0.28778407, 0.28778407, 1)
+position = Vector2(349.055, -48)
+death_tile_layer = NodePath("")
+dash_speed = 1000.0
+dash_duration = 0.5
+dash_down_speed = 1000.0
+input_left = &"p2_left"
+input_right = &"p2_right"
+input_down = &"p2_down"
+input_flap = &"p2_jump"
+input_dash = &"p2_dash"
+
+[node name="Spear" type="Node2D" parent="Player2" unique_id=315739023]
+script = ExtResource("2_wlke7")
+length = 37.0
+thickness = 2.0
+thrust_distance = 46.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Player2/Spear" unique_id=35439881]
+position = Vector2(-7.999998, -1.999999)
+scale = Vector2(2.658693, 1.5550001)
+texture = ExtResource("3_5gvjt")
+offset = Vector2(9.42, 0)
+
+[node name="Spearhitbox" type="Area2D" parent="Player2/Spear" unique_id=1326883014]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("4_gxki5")
+
+[node name="StabCollision" type="CollisionShape2D" parent="Player2/Spear/Spearhitbox" unique_id=736354857]
+position = Vector2(47.5, 0)
+scale = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_0yrc4")
+
+[node name="Robot Sprite" type="AnimatedSprite2D" parent="Player2" unique_id=1046071185]
+scale = Vector2(1.3125, 1.3125)
+sprite_frames = SubResource("SpriteFrames_p57me")
+animation = &"Walk"
+script = ExtResource("6_g511s")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=830794634]
+offset = Vector2(240, -144)
+zoom = Vector2(2, 2)
+
+[node name="TileMap" type="TileMapLayer" parent="." unique_id=892489017]
+tile_map_data = PackedByteArray("AAD4//7/AAACAAIAAAD5//7/AAACAAIAAAD6//7/AAACAAIAAAD7//7/AAACAAIAAAD8//7/AAACAAIAAAD9//7/AAACAAIAAAD+//7/AAACAAIAAAD///7/AAACAAIAAAAAAP7/AAACAAIAAAABAP7/AAACAAIAAAACAP7/AAACAAIAAAADAP7/AAACAAIAAAAEAP7/AAACAAIAAAAFAP7/AAACAAIAAAAGAP7/AAACAAIAAAAHAP7/AAACAAIAAAAIAP7/AAACAAIAAAAJAP7/AAACAAIAAAAKAP7/AAACAAIAAAALAP7/AAACAAIAAAAMAP7/AAACAAIAAAANAP7/AAACAAIAAAAOAP7/AAACAAIAAAAPAP7/AAACAAIAAAAQAP7/AAACAAIAAAARAP7/AAACAAIAAAASAP7/AAACAAIAAAATAP7/AAACAAIAAAAUAP7/AAACAAIAAAAVAP7/AAACAAIAAAAWAP7/AAACAAIAAAAXAP7/AAACAAIAAAAYAP7/AAACAAIAAAAZAP7/AAACAAIAAAAaAP7/AAACAAIAAAAbAP7/AAACAAIAAAAcAP7/AAACAAIAAAAdAP7/AAACAAIAAAAeAP7/AAACAAIAAAAfAP7/AAACAAIAAAAgAP7/AAACAAIAAAAhAP7/AAACAAIAAAAiAP7/AAACAAIAAAAjAP7/AAACAAIAAAAkAP7/AAACAAIAAAAlAP7/AAACAAIAAAA=")
+tile_set = SubResource("TileSet_gxki5")
