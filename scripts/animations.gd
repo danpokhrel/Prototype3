@@ -29,7 +29,7 @@ func _process(_delta: float) -> void:
 
 
 func _update_facing() -> void:
-	if player.dash_mode == Player.DashMode.HORIZONTAL:
+	if player.is_dashing:
 		facing = player.dash_direction
 	else:
 		var dir: float = Input.get_axis(player.input_left, player.input_right)
