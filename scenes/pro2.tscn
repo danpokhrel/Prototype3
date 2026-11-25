@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://07ccptm63r87" path="res://assets/tileset berserk.png" id="7_wlke7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0yrc4"]
-size = Vector2(51, 20)
+size = Vector2(57, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
 atlas = ExtResource("5_36sji")
@@ -120,7 +120,7 @@ collision_mask = 0
 script = ExtResource("4_gxki5")
 
 [node name="StabCollision" type="CollisionShape2D" parent="Player/Spear/Spearhitbox" unique_id=791408943]
-position = Vector2(47.5, 0)
+position = Vector2(44.5, 0)
 scale = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_0yrc4")
 
@@ -161,7 +161,7 @@ collision_mask = 0
 script = ExtResource("4_gxki5")
 
 [node name="StabCollision" type="CollisionShape2D" parent="Player2/Spear/Spearhitbox" unique_id=736354857]
-position = Vector2(47.5, 0)
+position = Vector2(44.5, 0)
 scale = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_0yrc4")
 
